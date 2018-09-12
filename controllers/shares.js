@@ -8,7 +8,10 @@ function indexRoute(req, res, next){
     method: 'GET',
     url: 'http://api.kano.me/share?limit=100'
   })
-    .then(data => res.json(data))
+    .then(results => {
+      console.log(results.data.entries);
+      res.send(results.data.entries);
+    })
     .catch(next);
 }
 
