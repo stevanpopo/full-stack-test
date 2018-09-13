@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import _ from 'lodash';
 // import './scss/main.scss';
 
 import 'bulma';
@@ -20,6 +21,17 @@ class App extends React.Component {
       .catch(err => console.log('err', err));
   }
 
+  handleChange = ({ target: { name, value }}) => {
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const searchRegEx = new RegExp(this.state.search, 'i');
+    const filteredData = _.filter(this.state.data, (share) => searchRegEx.test(share.title));
+    this.setState({ filteredData });
+  }
+
   render() {
     console.log(this.state);
     if(!this.state.data) return <h1>Loading...</h1>;
@@ -31,18 +43,19 @@ class App extends React.Component {
         </header>
 
         <section className="section columns is-centered">
-          <form className="column is-half-desktop">
+          <form className="column is-half-desktop" onSubmit={this.handleSubmit}>
             <div className="field">
               <label className="label">Search</label>
               <div className="control">
-                <input className="input" type="text" placeholder="Search..." />
+                <input className="input" name="search" type="text" placeholder="Search..." onChange={this.handleChange} />
               </div>
             </div>
+            <button className="button">Search</button>
           </form>
         </section>
 
         <div className="columns is-multiline">
-          {this.state.data.map(share =>
+          {(this.state.filteredData? this.state.filteredData : this.state.data).map(share =>
             <div className="card column is-one-quarter-desktop is-one-third-tablet" key={share.id}>
               <div className="card-image">
                 <figure className="image is-4by3">
