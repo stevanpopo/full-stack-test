@@ -9,7 +9,6 @@ function indexRoute(req, res, next){
     url: 'http://api.kano.me/share?limit=100'
   })
     .then(results => {
-      console.log(results.data.entries);
       const filteredResults = results.data.entries.map(share => {
         return {
           id: share.id,
@@ -19,7 +18,6 @@ function indexRoute(req, res, next){
           username: share.user.username
         };
       });
-
       res.send(filteredResults);
     })
     .catch(next);
