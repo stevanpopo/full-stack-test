@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   handleChange = ({ target: { name, value }}) => {
-    this.setState({ [name]: value });
+    this.setState({ [name]: value.toLowerCase() });
   }
 
   handleSubmit = (e) => {
@@ -54,8 +54,22 @@ class App extends React.Component {
           </form>
         </section>
 
+        <div className="field">
+          <label className="label">Filter</label>
+          <div className="control">
+            <div className="select">
+              <select name="selected" onChange={this.handleChange}>
+                <option>Select dropdown</option>
+                <option>Time</option>
+                <option>Title</option>
+                <option>Likes</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
         <div className="columns is-multiline">
-          {(this.state.filteredData? this.state.filteredData : this.state.data).map(share =>
+          {_.sortBy((this.state.filteredData? this.state.filteredData : this.state.data), [ this.state.selected ]).map(share =>
             <div className="card column is-one-quarter-desktop is-one-third-tablet" key={share.id}>
               <div className="card-image">
                 <figure className="image is-4by3">
