@@ -29,9 +29,20 @@ class App extends React.Component {
           <img src="http://pong.kano.me/assets/kano-logo.png" alt="Kano logo" />
           <h1 className="title is-1">PROJECT_TITLE</h1>
         </header>
+
+        <section className="section columns is-centered">
+          <form className="column is-half-desktop">
+            <div className="field">
+              <label className="label">Search</label>
+              <div className="control">
+                <input className="input" type="text" placeholder="Search..." />
+              </div>
+            </div>
+          </form>
+        </section>
+
         <div className="columns is-multiline">
           {this.state.data.map(share =>
-
             <div className="card column is-one-quarter-desktop is-one-third-tablet" key={share.id}>
               <div className="card-image">
                 <figure className="image is-4by3">
