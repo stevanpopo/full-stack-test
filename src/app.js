@@ -69,19 +69,20 @@ class App extends React.Component {
         </div>
 
         <div className="columns is-multiline">
-          {_.sortBy((this.state.filteredData? this.state.filteredData : this.state.data), [ this.state.selected ]).map(share =>
+          {_.orderBy((this.state.filteredData? this.state.filteredData : this.state.data), [this.state.selected], (this.state.selected==='likes'? ['desc']: ['asc'])).map(share =>
             <div className="card column is-one-quarter-desktop is-one-third-tablet" key={share.id}>
               <div className="card-image">
                 <figure className="image is-4by3">
-                  <img src={share.cover_url} alt="Shared item image" />
+                  <img src={share.image} alt="Shared item image" />
                 </figure>
               </div>
               <div className="card-content">
                 <div className="media">
                   <div className="media-content">
                     <p className="title is-4">{share.title}</p>
-                    <p className="subtitle is-6">{share.user.username}</p>
-                    {share.likes.forEach(like => <p>{like}</p>)}
+                    <p className="subtitle is-6">{share.username}</p>
+                    <p className="subtitle is-6">{share.likes}</p>
+
                   </div>
                 </div>
 

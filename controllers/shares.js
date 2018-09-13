@@ -12,8 +12,10 @@ function indexRoute(req, res, next){
       console.log(results.data.entries);
       const filteredResults = results.data.entries.map(share => {
         return {
+          id: share.id,
           title: share.title,
-          likesCount: share.likes.length,
+          image: share.cover_url,
+          likes: share.likes.length,
           username: share.user.username
         };
       });
