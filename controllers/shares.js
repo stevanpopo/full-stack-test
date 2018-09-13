@@ -10,7 +10,15 @@ function indexRoute(req, res, next){
   })
     .then(results => {
       console.log(results.data.entries);
-      res.send(results.data.entries);
+      const filteredResults = results.data.entries.map(share => {
+        return {
+          title: share.title,
+          likesCount: share.likes.length,
+          username: share.user.username
+        };
+      });
+
+      res.send(filteredResults);
     })
     .catch(next);
 }
