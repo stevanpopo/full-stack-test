@@ -83,10 +83,7 @@ class SharesIndex extends React.Component {
                   </div>
                 </div>
 
-                <div className="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris.
-                </div>
+                <div className="content">{share.description}</div>
               </div>
             </div>
           )}

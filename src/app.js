@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import _ from 'lodash';
 // import './scss/main.scss';
 
 import SharesIndex from './components/Index';
+import SharesShow from './components/Show';
 
 import 'bulma';
 
@@ -48,8 +48,8 @@ class App extends React.Component {
           </header>
 
           <Switch>
+            <Route path="/:id" component={SharesShow} />
             <Route path="/" component={SharesIndex} />
-            {/* <Route path="/:id" component={SharesShow} /> */}
           </Switch>
 
         </main>
