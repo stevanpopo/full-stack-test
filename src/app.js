@@ -25,14 +25,17 @@ class App extends React.Component {
     if(!this.state.data) return <h1>Loading...</h1>;
     return (
       <main className="container">
-        <h1 className="title is-1">PROJECT_TITLE</h1>
+        <header className="header columns">
+          <img src="http://pong.kano.me/assets/kano-logo.png" alt="Kano logo" />
+          <h1 className="title is-1">PROJECT_TITLE</h1>
+        </header>
         <div className="columns is-multiline">
           {this.state.data.map(share =>
 
             <div className="card column is-one-quarter-desktop is-one-third-tablet" key={share.id}>
               <div className="card-image">
                 <figure className="image is-4by3">
-                  <img src={share.cover_url} alt="Placeholder image" />
+                  <img src={share.cover_url} alt="Shared item image" />
                 </figure>
               </div>
               <div className="card-content">
